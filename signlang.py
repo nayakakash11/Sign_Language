@@ -9,33 +9,33 @@ mp_holistic = mp.solutions.holistic
 holistic = mp_holistic.Holistic(min_detection_confidence=0.7)
 fingertip = [4, 8, 12, 16, 20]
 
-def a(list, hand_type):
+def Aa(list, hand_type):
     len = math.hypot(list[4][1] - list[6][1], list[4][2] - list[6][2])
     if len < 70 and list[4][2] < list[7][2]:
         if hand_type == 'Right':
             if list[3][1] > list[6][1]:
-                if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][
-                    2] > list[18][2] and list[4][1] > list[18][1]):
+                if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and
+                list[20][2] > list[18][2] and list[4][1] > list[18][1]):
                     return True
 
         elif hand_type == 'Left':
             if list[3][1] < list[6][1]:
-                if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][
-                    2] > list[18][2] and list[4][1] < list[18][1]):
+                if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and
+                list[20][2] > list[18][2] and list[4][1] < list[18][1]):
                     return True
 
     return False
 
 
-def b(list, hand_type):
+def Bb(list, hand_type):
     if hand_type == 'Right':
-        if (list[8][2] < list[6][2] and list[12][2] < list[10][2] and list[16][2] < list[14][2] and list[20][2] <
-                list[18][2] and list[4][1] < list[5][1]):
+        if (list[8][2] < list[6][2] and list[12][2] < list[10][2] and list[16][2] < list[14][2] and
+        list[20][2] < list[18][2] and list[4][1] < list[5][1]):
             return True
 
     if hand_type == 'Left':
-        if (list[8][2] < list[6][2] and list[12][2] < list[10][2] and list[16][2] < list[14][2] and list[20][2] <
-                list[18][2] and list[4][1] > list[5][1]):
+        if (list[8][2] < list[6][2] and list[12][2] < list[10][2] and list[16][2] < list[14][2] and
+        list[20][2] < list[18][2] and list[4][1] > list[5][1]):
             return True
 
     return False
@@ -63,35 +63,38 @@ def Dd(list):
         len3 = math.hypot(list[4][1] - list[20][1], list[4][2] - list[20][2])
         if len1 < 30 and len2 < 30 and len3 < 30:
             return True
+
     return False
 
 def Ee(list, hand_type):
-    len1 = math.hypot(list[3][1] - list[9][1], list[3][2] - list[9][2])
-    len2 = math.hypot(list[4][1] - list[13][1], list[4][2] - list[13][2])
-    if len1 < 60 and len2 < 60:
+    len1 = math.hypot(list[3][1] - list[8][1], list[3][2] - list[8][2])
+    len2 = math.hypot(list[4][1] - list[12][1], list[4][2] - list[12][2])
+    if len1 > 30 and len2 > 30:
         if hand_type == 'Right':
             if list[3][1] > list[6][1]:
                 if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][2] > list[18][2]
-                        and list[4][1] > list[18][1]):
+                and list[4][1] > list[18][1]):
                     return True
 
         elif hand_type == 'Left':
             if list[3][1] < list[6][1]:
                 if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][2] > list[18][2]
-                        and list[4][1] < list[18][1]):
+                and list[4][1] < list[18][1]):
                     return True
 
     return False
 
 def Ff(list):
     if (list[12][2] < list[9][2] and list[16][2] < list[13][2] and list[20][2] < list[17][2]):
-        if abs(list[8][1] - list[5][1]) < 20:
-            len = math.hypot(list[4][1] - list[8][1], list[4][2] - list[8][2])
-            if len < 60:
+        if abs(list[8][1] - list[5][1]) < 40:
+            len1 = math.hypot(list[4][1] - list[8][1], list[4][2] - list[8][2])
+            len2 = math.hypot(list[4][1] - list[12][1], list[4][2] - list[12][2])
+            if len1 < 60 and len2 > 50:
                 return True
+
     return False
 
-def Gg(list,hand_type):
+def Gg(list, hand_type):
     if (abs(list[4][2] - list[6][2]) < 50):
         if (hand_type == 'Right'):
             if list[8][1] > list[5][1]:
@@ -104,7 +107,7 @@ def Gg(list,hand_type):
                     return True
     return False
 
-def Hh(list,hand_type):
+def Hh(list, hand_type):
     if(list[4][2] > list[6][2] and list[4][2] < list[14][2]):
         if (hand_type == 'Right'):
             if list[8][1] > list[5][1] and list[12][1] > list[9][1]:
@@ -118,33 +121,117 @@ def Hh(list,hand_type):
 
     return False
 
-def Ii(list,hand_type):
+def Ii(list, hand_type):
     if(hand_type == 'Right'):
         if list[4][1] > list[18][1]:
             if(list[20][2] < list[18][2]):
                 if(list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] < list[16][2]):
                     return True
+
     elif(hand_type == 'Left'):
         if list[4][1] < list[18][1]:
             if (list[20][2] < list[18][2]):
                 if (list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] <
                         list[16][2]):
                     return True
+
     return False
 
-def Jj(list,hand_type):
-    if (hand_type == 'Right'):
-        if list[4][1] < list[18][1]:
-            if (list[20][2] < list[18][2]):
-                if (list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] <
-                        list[16][2]):
-                    return True
-    elif (hand_type == 'Left'):
-        if list[4][1] > list[18][1]:
-            if (list[20][2] < list[18][2]):
-                if (list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] <
-                        list[16][2]):
-                    return True
+def Jj(list, hand_type):
+    len = math.hypot(list[4][1] - list[6][1], list[4][2] - list[6][2])
+    if len < 50:
+        if (hand_type == 'Right'):
+            if list[4][1] < list[20][1] and abs(list[10][2] - list[20][2]) < 50:
+                if (list[20][2] < list[18][2]):
+                    if (list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] <
+                            list[16][2]):
+                        return True
+
+        elif (hand_type == 'Left'):
+            if list[4][1] > list[20][1] and abs(list[10][2] - list[20][2]) < 50:
+                if (list[20][2] < list[18][2]):
+                    if (list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] <
+                            list[16][2]):
+                        return True
+
+    return False
+
+def Kk(list, hand_type):
+    len = math.hypot(list[4][1] - list[10][1], list[4][2] - list[10][2])
+    if len < 50 and list[8][2] < list[12][2] and abs(list[8][1] - list[12][1]) < 50 and list[8][2] < list[6][2]:
+        if (hand_type == 'Right'):
+            if (list[4][1] > list[20][1]):
+                return True
+
+        elif (hand_type == 'Left'):
+            if (list[4][1] < list[20][1]):
+                return True
+
+    return False
+
+def Ll(list, hand_type):
+    if abs(list[4][2] - list[2][2]) < 50 and abs(list[8][1] - list[5][1]) < 50 and list[8][2] < list[6][2]:
+        if (hand_type == 'Right'):
+            if (list[4][1] > list[20][1] and list[9][2] < list[12][2] and list[13][2] < list[16][2] and list[17][2] < list[20][2]):
+                return True
+
+        elif (hand_type == 'Left'):
+            if (list[4][1] < list[20][1] and list[9][2] < list[12][2] and list[13][2] < list[16][2] and list[17][2] < list[20][2]):
+                return True
+
+    return False
+
+def Mm(list, hand_type):
+    if list[4][2] < list[18][2] and abs(list[4][2] - list[6][2]) < 50:
+        len1 = math.hypot(list[4][1] - list[18][1], list[4][2] - list[18][2])
+        len2 = math.hypot(list[4][1] - list[14][1], list[4][2] - list[14][2])
+        if len1 < 40 and len2 < 60:
+            if hand_type == 'Right':
+                if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][2] >
+                        list[18][2]):
+                    if (list[4][1] < list[14][1]):
+                        return True
+
+            elif hand_type == 'Left':
+                if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][2] >
+                        list[18][2]):
+                    if (list[4][1] > list[14][1]):
+                        return True
+
+    return False
+
+def Nn(list, hand_type):
+    if list[4][2] < list[14][2] and abs(list[4][2] - list[10][2]) < 50:
+        len1 = math.hypot(list[4][1] - list[14][1], list[4][2] - list[14][2])
+        len2 = math.hypot(list[4][1] - list[10][1], list[4][2] - list[10][2])
+        if len1 < 40 and len2 < 60:
+            if hand_type == 'Right':
+                if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][2] >
+                        list[18][2]):
+                    if (list[4][1] < list[10][1]):
+                        return True
+
+            elif hand_type == 'Left':
+                if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][2] >
+                        list[18][2]):
+                    if (list[4][1] > list[10][1]):
+                        return True
+
+    return False
+
+def Oo(list, hand_type):
+    len1 = math.hypot(list[4][1] - list[8][1], list[4][2] - list[8][2])
+    len2 = math.hypot(list[4][1] - list[12][1], list[4][2] - list[12][2])
+    len3 = math.hypot(list[4][1] - list[16][1], list[4][2] - list[16][2])
+    if len1 < 60 and len2 < 40 and len3 < 60 and abs(list[4][1] - list[3][1]) < 30 and abs(list[8][2] - list[12][2]) < 30 and abs(list[12][2] - list[16][2] < 30) and abs(list[16][2] - list[20][2] < 30):
+        if hand_type == 'Right':
+            if list[4][1] > list[20][1]:
+                return True
+
+        elif hand_type == 'Left':
+            if list[4][1] < list[20][1]:
+                return True
+
     return False
 
 def which(list):
@@ -444,33 +531,53 @@ while cap.isOpened():
                 # print("Stop!")
                 cv.putText(frame, "Stop!", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
-            elif a(list, 'Right'):
+            elif Aa(list, 'Right'):
                 # print("Aa")
                 cv.putText(frame, "Aa", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
-            elif b(list, 'Right'):
+            elif Bb(list, 'Right'):
                 # print("Bb")
                 cv.putText(frame, "Bb", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Ee(list, 'Right'):
-                # print("Bb")
+                # print("Ee")
                 cv.putText(frame, "Ee", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Gg(list, 'Right'):
-                # print("Bb")
+                # print("Gg")
                 cv.putText(frame, "Gg", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Hh(list, 'Right'):
-                # print("Bb")
+                # print("Hh")
                 cv.putText(frame, "Hh", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Ii(list, 'Right'):
-                # print("Bb")
+                # print("Ii")
                 cv.putText(frame, "Ii", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Jj(list, 'Right'):
-                # print("Bb")
+                # print("Jj")
                 cv.putText(frame, "Jj", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Kk(list, 'Right'):
+                # print("Kk")
+                cv.putText(frame, "Kk", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Ll(list, 'Right'):
+                # print("Ll")
+                cv.putText(frame, "Ll", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Mm(list, 'Right'):
+                # print("Ll")
+                cv.putText(frame, "Mm", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Nn(list, 'Right'):
+                # print("Ll")
+                cv.putText(frame, "Nn", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Oo(list, 'Right'):
+                # print("Ll")
+                cv.putText(frame, "Oo", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
         elif cnt == 2:
 
@@ -478,37 +585,57 @@ while cap.isOpened():
                 # print("Bathroom")
                 cv.putText(frame, "Bathroom...", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
-            if stop(list, 'Left'):
+            elif stop(list, 'Left'):
                 # print("Stop!")
                 cv.putText(frame, "Stop!", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
-            elif a(list, 'Left'):
+            elif Aa(list, 'Left'):
                 # print("Aa")
                 cv.putText(frame, "Aa", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
-            elif b(list, 'Left'):
+            elif Bb(list, 'Left'):
                 # print("Bb")
                 cv.putText(frame, "Bb", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Ee(list, 'Left'):
-                # print("Bb")
+                # print("Ee")
                 cv.putText(frame, "Ee", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Gg(list, 'Left'):
-                # print("Bb")
+                # print("Gg")
                 cv.putText(frame, "Gg", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Hh(list, 'Left'):
-                # print("Bb")
+                # print("Hh")
                 cv.putText(frame, "Hh", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Ii(list, 'Left'):
-                # print("Bb")
+                # print("Ii")
                 cv.putText(frame, "Ii", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
             elif Jj(list, 'Left'):
-                # print("Bb")
+                # print("Jj")
                 cv.putText(frame, "Jj", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Kk(list, 'Left'):
+                # print("Kk")
+                cv.putText(frame, "Kk", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Ll(list, 'Left'):
+                # print("Ll")
+                cv.putText(frame, "Ll", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Mm(list, 'Left'):
+                # print("Ll")
+                cv.putText(frame, "Mm", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Nn(list, 'Left'):
+                # print("Ll")
+                cv.putText(frame, "Nn", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Oo(list, 'Left'):
+                # print("Ll")
+                cv.putText(frame, "Oo", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
     cv.imshow('frame', frame)
 
