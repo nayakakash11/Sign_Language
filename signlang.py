@@ -69,7 +69,7 @@ def Dd(list):
 def Ee(list, hand_type):
     len1 = math.hypot(list[3][1] - list[8][1], list[3][2] - list[8][2])
     len2 = math.hypot(list[4][1] - list[12][1], list[4][2] - list[12][2])
-    if len1 > 30 and len2 > 30:
+    if len1 > 30 and len2 > 30 and list[12][2] < list[9][2]:
         if hand_type == 'Right':
             if list[3][1] > list[6][1]:
                 if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][2] > list[18][2]
@@ -122,18 +122,18 @@ def Hh(list, hand_type):
     return False
 
 def Ii(list, hand_type):
-    if(hand_type == 'Right'):
-        if list[4][1] > list[18][1]:
-            if(list[20][2] < list[18][2]):
-                if(list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] < list[16][2]):
-                    return True
+    if list[9][2] > list[10][2]:
+        if(hand_type == 'Right'):
+            if list[4][1] > list[18][1]:
+                if(list[20][2] < list[18][2]):
+                    if(list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] < list[16][2]):
+                        return True
 
-    elif(hand_type == 'Left'):
-        if list[4][1] < list[18][1]:
-            if (list[20][2] < list[18][2]):
-                if (list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] <
-                        list[16][2]):
-                    return True
+        elif(hand_type == 'Left'):
+            if list[4][1] < list[18][1]:
+                if (list[20][2] < list[18][2]):
+                    if (list[4][2] < list[2][2] and list[5][2] < list[8][2] and list[9][2] < list[12][2] and list[13][2] < list[16][2]):
+                        return True
 
     return False
 
@@ -170,7 +170,7 @@ def Kk(list, hand_type):
     return False
 
 def Ll(list, hand_type):
-    if abs(list[4][2] - list[2][2]) < 50 and abs(list[8][1] - list[5][1]) < 50 and list[8][2] < list[6][2] and abs(list[4][1] - list[10][1] > 50):
+    if abs(list[4][2] - list[2][2]) < 50 and abs(list[8][1] - list[5][1]) < 50 and list[8][2] < list[6][2] and abs(list[4][1] - list[10][1] > 50) and abs(list[9][2] - list[10][2]) < 20:
         if (hand_type == 'Right'):
             if (list[4][1] > list[20][1] and list[9][2] < list[12][2] and list[13][2] < list[16][2] and list[17][2] < list[20][2]):
                 return True
@@ -236,7 +236,8 @@ def Oo(list, hand_type):
 
 def Pp(list, hand_type):
     len = math.hypot(list[4][1] - list[10][1], list[4][2] - list[10][2])
-    if len < 50 and list[8][2] < list[12][2] and abs(list[8][1] - list[12][1]) < 50 and abs(list[8][2] - list[6][2]) < 40 and list[10][2] > list[12][2] and list[14][2] < list[16][2] and list[18][2] < list[20][2]:
+    if (len < 60 and list[8][2] < list[12][2] and abs(list[8][1] - list[12][1]) < 60 and abs(list[8][2] - list[6][2]) < 40 and
+    list[10][2] < list[12][2] and list[14][2] < list[16][2] and list[18][2] < list[20][2]):
         if (hand_type == 'Right'):
             if (list[4][1] > list[20][1]):
                 return True
@@ -246,6 +247,9 @@ def Pp(list, hand_type):
                 return True
 
     return False
+
+def Qq(list, hand_type):
+
 
 def which(list):
     if ((list[4][2] < list[3][2] and list[3][2] < list[2][2]) and (list[5][1] < list[6][1] and
