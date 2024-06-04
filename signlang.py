@@ -124,7 +124,8 @@ def Hh(list, hand_type):
     return False
 
 def Ii(list, hand_type):
-    if list[9][2] > list[10][2]:
+    len = math.hypot(list[4][1] - list[17][1], list[4][2] - list[17][2])
+    if list[9][2] > list[10][2] and len < 100:
         if(hand_type == 'Right'):
             if list[4][1] > list[18][1]:
                 if(list[20][2] < list[18][2]):
@@ -345,7 +346,7 @@ def Ww(list, hand_type):
     return False
 
 def Xx(list, hand_type):
-    if(list[8][2] > list[6][2] and list[6][2] < list[5][2] and abs(list[4][2] - list[14][2]) < 50):
+    if(list[8][2] > list[6][2] and list[6][2] < list[5][2] and abs(list[4][2] - list[14][2]) < 50 and abs(list[8][2] - list[7][2]) < 40):
         if (hand_type == 'Right'):
             if(list[2][1] > list[18][1]):
                 if(list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][2] > list[18][2]):
@@ -355,6 +356,21 @@ def Xx(list, hand_type):
             if(list[2][1] < list[18][1]):
                 if(list[12][2] > list[10][2] and list[16][2] > list[14][2] and list[20][2] > list[18][2]):
                     return True
+    return False
+
+def Yy(list, hand_type):
+    len = math.hypot(list[4][1] - list[6][1], list[4][2] - list[6][2])
+    if(list[4][2] < list[2][2] and list[20][2] < list [17][2] and len > 30):
+        if(hand_type == 'Right'):
+            if (list[4][1] > list[18][1]):
+                if(list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2]):
+                    return True
+
+        elif (hand_type == 'Left'):
+            if (list[4][1] < list[18][1]):
+                if (list[8][2] > list[6][2] and list[12][2] > list[10][2] and list[16][2] > list[14][2]):
+                    return True
+
     return False
 
 
@@ -735,6 +751,10 @@ while cap.isOpened():
                 # print("Pp")
                 cv.putText(frame, "Xx", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
+            elif Yy(list, 'Right'):
+                # print("Pp")
+                cv.putText(frame, "Yy", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
         elif cnt == 2:
 
             if bathroom(list, 'Left'):
@@ -825,6 +845,10 @@ while cap.isOpened():
             elif Xx(list, 'Left'):
                 # print("Pp")
                 cv.putText(frame, "Xx", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
+
+            elif Yy(list, 'Left'):
+                # print("Pp")
+                cv.putText(frame, "Yy", (80, 100), cv.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 6)
 
     cv.imshow('frame', frame)
 
